@@ -1,8 +1,13 @@
+
+import { SearchBar } from "@/components";
+
 export default function Home() {
   return (
-	<main className="flex min-h-screen items-center justify-center">
-		<h1> Birdie Picks </h1>
-		<h1> Textbox placeholder </h1>
+	<main>
+		<div className="grid grid-cols-1 min-h-screen justify-items-center content-center">
+			<h1 className="text-7xl font-main-grey p-10"> Birdie Picks </h1>
+			<SearchBar />
+		</div>
 	</main>
   );
 }
