@@ -3,16 +3,14 @@
 
 
 # Project
-- User functionalities:
-	- Log in
-	- See user homepage, like OP.gg or U.gg with top champion winrates
-	- Access Match history
-	- Chatbot for match recommendation based off teammates, historical data, user historical data
-		- auto completion for text entires to speed up pick time
 
-- Log in / Data analysis / chatbot powered by AI
+- Data analysis / chatbot powered by AI
 - Front end: Next.Js
-- Backend: Go for API
+- Backend: Express.Js
 - Database: MongoDB
 - Hosted on AWS
 
+
+## Notes
+- studying and learned that a lot of riot ecosystem exists on node.js. Think I'll take advantage of that.
+- notable site: cosmic dragon? - league scrapped database
