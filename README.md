@@ -6,11 +6,8 @@
 
 - Data analysis / chatbot powered by AI
 - Front end: Next.Js
-- Backend: Express.Js
-- Database: MongoDB
-- Hosted on AWS
+- Backend: Go
 
 
 ## Notes
-- studying and learned that a lot of riot ecosystem exists on node.js. Think I'll take advantage of that.
 - notable site: cosmic dragon? - league scrapped database
