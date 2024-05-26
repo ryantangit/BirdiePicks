@@ -5,7 +5,7 @@ import { useState } from "react"
 
 const test: Array<string> = ["Birtext","cukiex", "birkiex"]	
 
-//TODO: Search through
+//TODO: Search through notable names
 export default function SearchBar() {
 	
 	const [selectedAccount, setSelectedAccount] = useState("")
