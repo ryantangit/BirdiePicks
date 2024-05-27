@@ -6,8 +6,7 @@
 
 - Data analysis / chatbot powered by AI
 - Front end: Next.Js
-- Backend: Go
-
+- Backend: Next.JS
 
 ## Notes
 - notable site: cosmic dragon? - league scrapped database
