@@ -2,11 +2,10 @@
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions} from '@headlessui/react'
 import { useState } from "react"
 
-
 const test: Array<string> = ["Birtext","cukiex", "birkiex"]	
 
 //TODO: Search through notable names
-export default function SearchBar() {
+export default function GameName() {
 	
 	const [selectedAccount, setSelectedAccount] = useState("")
 	const [query, setQuery] = useState("");
