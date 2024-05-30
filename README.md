@@ -4,7 +4,7 @@
 
 # Project
 
-- Data analysis / chatbot powered by AI
+- Data analysis
 - Front end: Next.Js
 - Backend: Next.JS
 
