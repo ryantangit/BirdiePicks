@@ -1,24 +1,32 @@
-import { RiotQuery } from "../RiotQuery";
+import { RiotRateLimiterWrapper } from "../RiotRateLimiterWrapper";
+import { RegionDataManagement } from "@/utils/RegionDataManagement";
 
-//Expected Result from RiotQuery
+const ACCOUNTID_PATH = "/riot/account/v1/accounts/by-riot-id/"
+
+//Expected Result
 export interface AccountDto {
   puuid: string;
   gameName: string;
   gameTag: string;
 }
 
+const regionDataManagement = new RegionDataManagement();
+
 export class AccountQuery {
-  endPoint: string;
-  apiKey: string;
 
-  constructor(gameName: string, gameTag: string, apiKey: string) {
-    this.endPoint = `riot/account/v1/accounts/by-riot-id/${gameName}/${gameTag}`;
-    this.apiKey = apiKey;
-  }
-
-  async getPuuid() {
-    const riotQuery: RiotQuery = new RiotQuery(this.apiKey, "americas", this.endPoint);
-    const results: AccountDto = await riotQuery.execute();
-    return results;
+  async getPuuid(gameName: string, gameTag: string, regionRoute: string) {
+    const endPoint = `${gameName}/${gameTag}`;
+    const puuidPath = ACCOUNTID_PATH + endPoint;
+    const apiCluster = regionDataManagement.RouteToAPICluster(regionRoute);
+    const riotRateLimiterWrapper = new RiotRateLimiterWrapper(apiCluster, puuidPath);
+    try {
+      const results: AccountDto = await riotRateLimiterWrapper.execute();
+      if (!results) {
+        console.error("AccountQuery results did not query properly");
+      }
+      return results;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

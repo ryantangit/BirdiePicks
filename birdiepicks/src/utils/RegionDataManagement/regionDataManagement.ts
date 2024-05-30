@@ -5,9 +5,9 @@ export interface RegionType {
 
 export class RegionDataManagement {
   private regions: RegionType[];
-  private regionGameTagMap: { [key: string]: string };
-  private regionDomainToAPIMap: { [key: string]: string };
-  private regionNameToDomainMap: { [key: string]: string };
+  private regionToDefaultGameTagMap: { [key: string]: string };
+  private regionRouteToAPIClusterMap: { [key: string]: string };
+  private regionNameToRouteMap: { [key: string]: string };
   constructor() {
     this.regions = [
       { id: 0, region: "North America" },
@@ -15,19 +15,20 @@ export class RegionDataManagement {
       { id: 2, region: "Europe Nordic/East" },
       { id: 3, region: "Korea" }
     ];
-    this.regionGameTagMap = {
+    this.regionToDefaultGameTagMap = {
       "North America": "NA1",
       "Europe West": "EUW",
-      "EUNE": "EUNE",
+      "Europe Nordic/East": "EUNE",
       "Korea": "KR1"
     }
-    this.regionDomainToAPIMap = {
-      "na": "america",
+    this.regionRouteToAPIClusterMap = {
+      "na": "americas",
       "euw": "europe",
       "eune": "europe",
       "kr": "asia"
     }
-    this.regionNameToDomainMap = {
+
+    this.regionNameToRouteMap = {
       "North America": "na",
       "Europe West": "euw",
       "Europe Nordic/East": "eune",
@@ -41,15 +42,15 @@ export class RegionDataManagement {
   }
 
   defaultGametag(region: RegionType) {
-    return this.regionGameTagMap[region.region];
+    return this.regionToDefaultGameTagMap[region.region];
   }
 
-  APIRegion(domainName: string): string {
-    return this.regionDomainToAPIMap[domainName];
+  RouteToAPICluster(domainName: string): string {
+    return this.regionRouteToAPIClusterMap[domainName];
   }
 
-  nameToDomain(regionName: string): string {
-    return this.regionNameToDomainMap[regionName];
+  nameToRoute(regionName: string): string {
+    return this.regionNameToRouteMap[regionName];
   }
 }
 
