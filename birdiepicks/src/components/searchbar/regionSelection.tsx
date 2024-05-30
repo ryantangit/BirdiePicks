@@ -1,12 +1,14 @@
 "use client"
 import { Listbox, ListboxOptions, ListboxOption, ListboxButton } from "@headlessui/react"
 import { Dispatch, SetStateAction } from "react"
-import { RegionType, regionDataManagement } from "@/utils/RegionDataManagement"
+import { RegionType, RegionDataManagement } from "@/utils/RegionDataManagement"
 
 interface RegionProps {
   selectedRegion: RegionType,
   setSelectedRegion: Dispatch<SetStateAction<{ id: number, region: string }>>
 }
+
+const regionDataManagement = new RegionDataManagement();
 
 export default function RegionSelection(props: RegionProps) {
   return (

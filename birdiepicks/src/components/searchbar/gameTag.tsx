@@ -1,10 +1,12 @@
 "use client"
 import { useState, useEffect } from "react"
-import { RegionType, regionDataManagement } from "@/utils/RegionDataManagement"
+import { RegionType, RegionDataManagement } from "@/utils/RegionDataManagement"
 
 interface GameTagProps {
   selectedRegion: RegionType
 }
+
+const regionDataManagement = new RegionDataManagement();
 
 export default function GameTag(props: GameTagProps) {
   const [gametag, setGametag] = useState(regionDataManagement.defaultGametag(props.selectedRegion));

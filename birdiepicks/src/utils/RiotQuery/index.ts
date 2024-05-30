@@ -1,6 +1,6 @@
-import { AccountQuery, type AccountDto } from "./Queries/AccountQuery";
+import { RiotQuery } from "./RiotQuery"
+
 
 export {
-  AccountDto,
-  AccountQuery
+  RiotQuery
 }
