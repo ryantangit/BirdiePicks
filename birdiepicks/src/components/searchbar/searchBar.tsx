@@ -3,9 +3,7 @@ import GameName from "./gameName";
 import RegionSelection from "./regionSelection";
 import { useState } from "react";
 import GameTag from "./gameTag";
-import { RegionDataManagement } from "./regionDataManagement";
-
-const regionDataManagement = new RegionDataManagement();
+import { regionDataManagement } from "@/utils/RegionDataManagement"
 
 export default function SearchBar() {
   const [selectedRegion, setSelectedRegion] = useState(regionDataManagement.getRegions[0]);
@@ -16,11 +14,10 @@ export default function SearchBar() {
         <GameName />
       </div>
       <div className="px-3">
-        <GameTag selectedRegion={selectedRegion} regionDataManagement={regionDataManagement} />
+        <GameTag selectedRegion={selectedRegion} />
       </div>
       <div className="px-3">
-        <RegionSelection regionDataManagement={regionDataManagement}
-          selectedRegion={selectedRegion}
+        <RegionSelection selectedRegion={selectedRegion}
           setSelectedRegion={setSelectedRegion} />
       </div>
     </div>
