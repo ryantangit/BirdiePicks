@@ -8,6 +8,8 @@ export class RegionDataManagement {
   private regionToDefaultGameTagMap: { [key: string]: string };
   private regionRouteToAPIClusterMap: { [key: string]: string };
   private regionNameToRouteMap: { [key: string]: string };
+  private regionRouteToAPIHeadMap: { [key: string]: string };
+
   constructor() {
     this.regions = [
       { id: 0, region: "North America" },
@@ -27,14 +29,19 @@ export class RegionDataManagement {
       "eune": "europe",
       "kr": "asia"
     }
-
     this.regionNameToRouteMap = {
       "North America": "na",
       "Europe West": "euw",
       "Europe Nordic/East": "eune",
       "Korea": "kr"
     }
+    this.regionRouteToAPIHeadMap = {
+      "na": "na1",
+      "euw": "euw1",
+      "eune": "eun1",
+      "kr": "kr"
 
+    }
   }
 
   get getRegions(): RegionType[] {
@@ -45,12 +52,16 @@ export class RegionDataManagement {
     return this.regionToDefaultGameTagMap[region.region];
   }
 
-  RouteToAPICluster(domainName: string): string {
-    return this.regionRouteToAPIClusterMap[domainName];
+  RouteToAPICluster(routeName: string): string {
+    return this.regionRouteToAPIClusterMap[routeName];
   }
 
   nameToRoute(regionName: string): string {
     return this.regionNameToRouteMap[regionName];
+  }
+
+  RouteToAPIHead(routeName: string): string {
+    return this.regionRouteToAPIHeadMap[routeName];
   }
 }
 
