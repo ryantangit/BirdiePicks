@@ -1,7 +1,6 @@
 import { RiotRateLimiterWrapper } from "../RiotRateLimiterWrapper";
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
 
-const ACCOUNTID_PATH = "/riot/account/v1/accounts/by-riot-id/"
 
 //Expected Result
 export interface AccountDto {
@@ -10,13 +9,14 @@ export interface AccountDto {
   gameTag: string;
 }
 
-const regionDataManagement = new RegionDataManagement();
 
+const regionDataManagement = new RegionDataManagement();
+const PUUID_PATH = "/riot/account/v1/accounts/by-riot-id/"
 export class AccountQuery {
 
   async getPuuid(gameName: string, gameTag: string, regionRoute: string) {
     const endPoint = `${gameName}/${gameTag}`;
-    const puuidPath = ACCOUNTID_PATH + endPoint;
+    const puuidPath = PUUID_PATH + endPoint;
     const apiCluster = regionDataManagement.RouteToAPICluster(regionRoute);
     const riotRateLimiterWrapper = new RiotRateLimiterWrapper(apiCluster, puuidPath);
     try {

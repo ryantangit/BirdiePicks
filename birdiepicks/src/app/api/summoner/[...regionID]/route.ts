@@ -10,15 +10,22 @@ export async function GET(request: Request, { params }: { params: { regionID: st
   const puuidResult = await riotQuery.accountQuery.getPuuid(gameIdGameTag[0], gameIdGameTag[1], regionRoute);
   if (!puuidResult) {
     return NextResponse.json({
-      message: "Not found"
+      message: "Account Id Not found"
+    }, {
+      status: 403
+    })
+  }
+  const summonerResult = await riotQuery.summonerQuery.getSummonerInfo(puuidResult.puuid, regionRoute)
+  if (!summonerResult) {
+    return NextResponse.json({
+      message: "Summoner Name Not found"
     }, {
       status: 403,
     })
   }
-
-  return Response.json({ puuidResult });
-
+  return Response.json({ puuidResult, summonerResult });
 }
 
-//return Response.json({ params })
+
+
 

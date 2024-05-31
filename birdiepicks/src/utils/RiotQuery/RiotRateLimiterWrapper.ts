@@ -23,6 +23,7 @@ export class RiotRateLimiterWrapper {
 
       return response;
     } catch (error) {
+      console.log(`Querying ${url}`);
       console.log(error);
     }
 
