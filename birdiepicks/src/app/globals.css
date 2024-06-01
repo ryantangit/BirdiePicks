@@ -12,6 +12,9 @@
 	.font-main-grey {
 		color: #6B6060;
 	}
+  .standard-border {
+    @apply rounded border-2 border-black
+  }
 	
 }
 
