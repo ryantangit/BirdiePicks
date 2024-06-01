@@ -1,4 +1,5 @@
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
+import Link from "next/link";
 
 interface SearchButtonProps {
   gametag: string;
@@ -9,11 +10,12 @@ interface SearchButtonProps {
 export default function SearchButton(props: SearchButtonProps) {
 
   //TODO: finish route
-  generateSummonerRoute(props.gametag, props.gameName, props.regionName)
+  const route = generateSummonerRoute(props.gametag, props.gameName, props.regionName)
   return (
-    <button>
+    <Link href={route}
+      className="standard-border p-1">
       Search
-    </button>
+    </Link>
   )
 }
 
