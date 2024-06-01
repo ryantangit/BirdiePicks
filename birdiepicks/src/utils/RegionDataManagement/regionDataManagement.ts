@@ -13,14 +13,14 @@ export class RegionDataManagement {
   constructor() {
     this.regions = [
       { id: 0, region: "North America" },
-      { id: 1, region: "Europe West" },
-      { id: 2, region: "Europe Nordic/East" },
+      { id: 1, region: "Europe W" },
+      { id: 2, region: "Europe NE" },
       { id: 3, region: "Korea" }
     ];
     this.regionToDefaultGameTagMap = {
       "North America": "NA1",
-      "Europe West": "EUW",
-      "Europe Nordic/East": "EUNE",
+      "Europe W": "EUW",
+      "Europe NE": "EUNE",
       "Korea": "KR1"
     }
     this.regionRouteToAPIClusterMap = {
@@ -31,8 +31,8 @@ export class RegionDataManagement {
     }
     this.regionNameToRouteMap = {
       "North America": "na",
-      "Europe West": "euw",
-      "Europe Nordic/East": "eune",
+      "Europe W": "euw",
+      "Europe NE": "eune",
       "Korea": "kr"
     }
     this.regionRouteToAPIHeadMap = {
