@@ -1,25 +1,34 @@
 "use client"
-import GameName from "./gameName";
-import RegionSelection from "./regionSelection";
 import { useState } from "react";
+import GameName from "./gameName";
 import GameTag from "./gameTag";
+import SearchButton from "./searchButton";
+import RegionSelection from "./regionSelection";
 import { RegionDataManagement } from "@/utils/RegionDataManagement"
 
 const regionDataManagement = new RegionDataManagement();
 export default function SearchBar() {
   const [selectedRegion, setSelectedRegion] = useState(regionDataManagement.getRegions[0]);
-
+  const [gametag, setGametag] = useState(regionDataManagement.defaultGametag(selectedRegion));
+  const [gameName, setGameName] = useState("");
   return (
-    <div>
-      <div className="px-3">
-        <GameName />
+    <div className="grid grid-cols-6 justify-center items-center gap-2">
+      <div className="col-span-2 col-start-2 w-full p-3">
+        <GameName gameName={gameName}
+          setGameName={setGameName}
+        />
       </div>
-      <div className="px-3">
-        <GameTag selectedRegion={selectedRegion} />
+      <div className="col-span-1 p-3">
+        <GameTag selectedRegion={selectedRegion}
+          gametag={gametag}
+          setGametag={setGametag} />
       </div>
-      <div className="px-3">
+      <div className="col-span-1 p-3">
         <RegionSelection selectedRegion={selectedRegion}
           setSelectedRegion={setSelectedRegion} />
+      </div>
+      <div className="col-span-1 p-3">
+        <SearchButton gameName={gameName} gametag={gametag} regionName={selectedRegion.region} />
       </div>
     </div>
   )
