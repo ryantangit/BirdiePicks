@@ -1,5 +1,5 @@
-import SearchBar from "./searchbar/searchBar";
+import SearchBar from "./SearchBar/SearchBar";
 
 export {
-	SearchBar
+  SearchBar
 };
