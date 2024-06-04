@@ -6,7 +6,7 @@ import { RegionDataManagement } from "@/utils/RegionDataManagement";
 export interface AccountDto {
   puuid: string;
   gameName: string;
-  gameTag: string;
+  tagLine: string;
 }
 
 
