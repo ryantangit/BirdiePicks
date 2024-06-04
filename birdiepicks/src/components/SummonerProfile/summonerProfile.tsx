@@ -15,9 +15,13 @@ export default async function SummonerProfile(props: SummonerProfileProps) {
   }
 
   return (
-    <div>
-      <SummonerName summonerName={result.puuidResult.gameName} summonerTag={result.puuidResult.tagLine} />
-      <SummonerIcon profileIconId={result.summonerResult.profileIconId} />
+    <div className="grid grid-flow-row-dense grid-cols-12">
+      <div className="p-2">
+        <SummonerIcon profileIconId={result.summonerResult.profileIconId} />
+      </div>
+      <div className="p-2">
+        <SummonerName summonerName={result.puuidResult.gameName} summonerTag={result.puuidResult.tagLine} />
+      </div>
     </div>
   )
 }
