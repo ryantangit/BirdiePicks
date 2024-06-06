@@ -17,6 +17,7 @@ export default function SummonerIcon(props: IconProp) {
         alt="Summoner Icon"
         width={iconHeight}
         height={iconWidth}
+        className="standard-border"
       />
     </>
   )
