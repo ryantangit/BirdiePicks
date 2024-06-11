@@ -1,6 +1,7 @@
 import SummonerName from "./summonerName";
 import SummonerIcon from "./summonerIcon"
 import { RiotQuery } from "@/utils/RiotQuery";
+import SummonerRank from "./summonerRank";
 
 
 interface SummonerProfileProps {
@@ -15,16 +16,23 @@ export default async function SummonerProfile(props: SummonerProfileProps) {
   }
 
   return (
-    <div className="flex justify-start p-10">
-      <div className="px-5">
-        <SummonerIcon profileIconId={result.summonerResult.profileIconId} />
+    <div className="grid grid-rows-2">
+      <div className="flex justify-start p-5">
+        <div className="px-5">
+          <SummonerIcon profileIconId={result.summonerResult.profileIconId} />
+        </div>
+        <div className="px-5">
+          <SummonerName summonerName={result.puuidResult.gameName}
+            summonerTag={result.puuidResult.tagLine}
+            summonerLevel={result.summonerResult.summonerLevel} />
+        </div>
       </div>
-      <div className="px-5">
-        <SummonerName summonerName={result.puuidResult.gameName}
-          summonerTag={result.puuidResult.tagLine}
-          summonerLevel={result.summonerResult.summonerLevel} />
+      <div className="flex justify-start p-5">
+        <div className="px-5">
+          <SummonerRank summonerId={result.summonerResult.id} routeRegion={props.regionID[0]} />
+        </div>
       </div>
-    </div >
+    </div>
   )
 }
 

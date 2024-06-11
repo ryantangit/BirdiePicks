@@ -7,8 +7,8 @@ interface IconProp {
 const ICON_URL = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons";
 export default function SummonerIcon(props: IconProp) {
   const iconSourceUrl = `${ICON_URL}/${props.profileIconId}.jpg`;
-  const iconHeight = 100;
-  const iconWidth = 100;
+  const iconHeight = 150;
+  const iconWidth = 150;
 
   return (
     <>
