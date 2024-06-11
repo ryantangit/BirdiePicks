@@ -8,5 +8,4 @@ test('Fetch Icon 0 from CommmunityDragon', async () => {
   expect(response).toBeDefined;
   expect(response?.ok).toBe(true);
   expect(response?.headers.get("content-type")).toBe("image/jpeg");
-
 })

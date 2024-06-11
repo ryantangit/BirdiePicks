@@ -1,13 +1,13 @@
-import { RiotRateLimiterWrapper } from "../RiotRateLimiterWrapper";
+import { RiotRateLimiterWrapper } from "../../RiotRateLimiterWrapper";
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
 
 
-interface SummonerDTO {
+export interface SummonerDTO {
   accountId: string,
   profileIconId: number,
   revisionDate: number,
-  id: number,
-  puuid: number,
+  id: string,
+  puuid: string,
   summonerLevel: number
 }
 
