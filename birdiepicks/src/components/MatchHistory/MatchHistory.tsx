@@ -1,10 +1,27 @@
+import { RiotQuery } from "@/utils/RiotQuery";
+import MatchFrame from "./Match/MatchFrame";
 
-export default function MatchHistory() {
+interface MatchHistoryProps {
+  puuid: string;
+  routeRegion: string;
+}
 
+export default async function MatchHistory(props: MatchHistoryProps) {
+  const riotQuery = new RiotQuery();
+  const matchQuery = await riotQuery.matchQuery.getLast20Matches(props.puuid, props.routeRegion);
+  if (!matchQuery || matchQuery.length === 0) {
+    return <p> No match found </p>
+  }
   return (
     <ul>
-      <p> match 1</p>
-      <p> match 2</p>
+      {matchQuery.map((matchId: string) => (
+        <li key={matchId}>
+          <MatchFrame matchId={matchId} />
+        </li>
+      ))}
     </ul>
   )
+
+
 }
+

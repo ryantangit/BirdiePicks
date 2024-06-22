@@ -1,10 +1,10 @@
-import { SummonerProfile } from "@/components"
+import { SummonerPage } from "@/components"
 
 export default function Page({ params }: { params: { regionID: string[] } }) {
 
   return (
     <div>
-      <SummonerProfile regionID={params.regionID} />
+      <SummonerPage regionID={params.regionID} />
     </div>
   )
 }
