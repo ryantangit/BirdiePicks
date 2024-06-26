@@ -27,4 +27,23 @@ export class RiotRateLimiterWrapper {
     }
 
   }
+
+  public async executeWithParams() {
+    const url = `https://${this.apiCluster}.api.riotgames.com${this.apiPath}`
+    try {
+      const response = await riotRateLimiter.execute({
+        url: url,
+        options: {
+          headers: {
+            "X-Riot-Token": process.env.RIOT_API,
+          },
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(`Querying ${url}`);
+      console.log(error);
+    }
+
+  }
 }

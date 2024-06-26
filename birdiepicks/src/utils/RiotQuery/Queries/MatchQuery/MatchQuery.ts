@@ -1,6 +1,11 @@
 import { RiotRateLimiterWrapper } from "../../RiotRateLimiterWrapper";
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
 
+interface MatchDto {
+  metaData: MetadataDto;
+  info: InfoDto;
+}
+
 interface MetadataDto {
   dataVersion: string;
   matchId: string;
@@ -201,8 +206,8 @@ interface ObjectiveDto {
 const regionDataManagement = new RegionDataManagement();
 export class MatchQuery {
 
-  public async getLast20Matches(puuid: string, regionRoute: string) {
-    const apiPath = `/lol/match/v5/matches/by-puuid/${puuid}/ids`
+  public async getLast10Matches(puuid: string, regionRoute: string) {
+    const apiPath = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1` //TODO: change this later
     const riotRateLimiter = new RiotRateLimiterWrapper(regionDataManagement.RouteToAPICluster(regionRoute), apiPath);
     try {
       const matchListResults: string[] = await riotRateLimiter.execute();
@@ -216,10 +221,10 @@ export class MatchQuery {
   }
 
   public async getMatchInfo(matchId: string, regionRoute: string) {
-    const apiPath = `lol/match/v5/match/${matchId}`
+    const apiPath = `/lol/match/v5/matches/${matchId}`
     const riotRateLimiter = new RiotRateLimiterWrapper(regionDataManagement.RouteToAPICluster(regionRoute), apiPath);
     try {
-      const matchData = await riotRateLimiter.execute();
+      const matchData: MatchDto = await riotRateLimiter.execute();
       if (!matchData) {
         throw new Error("Match data fetch query returned nothing");
       }
