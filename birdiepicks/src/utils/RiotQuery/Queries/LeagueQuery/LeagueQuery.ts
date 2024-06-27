@@ -1,21 +1,8 @@
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
-import { RiotRateLimiterWrapper } from "../../RiotRateLimiterWrapper";
+import { RiotRateLimiterWrapper } from "@/utils/RiotQuery/RiotRateLimiterWrapper";
 import { LeagueQueryParser } from "./LeagueQueryParser";
+import { LeagueEntryDTO } from "../QueryDataTypes";
 
-export interface LeagueEntryDTO {
-  leagueId: string;
-  summonerId: string;
-  queueType: string;
-  tier: string;
-  rank: string;
-  leaguePoints: number;
-  wins: number;
-  losses: number;
-  hotStreak: boolean;
-  veteran: boolean;
-  freshBlood: boolean;
-  inactive: boolean;
-}
 
 const regionDataManagement = new RegionDataManagement();
 const LEAGUE_PATH = "/lol/league/v4/entries/by-summoner/"

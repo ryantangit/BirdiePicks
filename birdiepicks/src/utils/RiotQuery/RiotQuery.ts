@@ -1,4 +1,4 @@
-import { AccountQuery } from "./Queries/AccountQuery";
+import { AccountQuery } from "./Queries/AccountQuery/AccountQuery";
 import { LeagueQuery } from "./Queries/LeagueQuery/LeagueQuery";
 import { SummonerQuery } from "./Queries/SummonerQuery/SummonerQuery";
 import { MatchQuery } from "./Queries/MatchQuery/MatchQuery";

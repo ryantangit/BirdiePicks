@@ -1,13 +1,6 @@
-import { RiotRateLimiterWrapper } from "../RiotRateLimiterWrapper";
+import { RiotRateLimiterWrapper } from "@/utils/RiotQuery/RiotRateLimiterWrapper";
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
-
-
-//Expected Result
-export interface AccountDto {
-  puuid: string;
-  gameName: string;
-  tagLine: string;
-}
+import { AccountDto } from "../QueryDataTypes";
 
 
 const regionDataManagement = new RegionDataManagement();
