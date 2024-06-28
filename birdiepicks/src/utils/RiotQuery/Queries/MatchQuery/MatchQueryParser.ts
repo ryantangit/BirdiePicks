@@ -1,9 +1,10 @@
 import { MatchDto } from "../QueryDataTypes";
 
-class MatchQueryParser {
+export class MatchQueryParser {
 
   public parse(matchData: MatchDto) {
-
+    const queueType = this.gameType(matchData.info.queueId);
+    return queueType;
   }
 
   private gameType(queueId: number) {
