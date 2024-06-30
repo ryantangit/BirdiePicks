@@ -7,6 +7,9 @@ export class MatchQueryParser {
     return queueType;
   }
 
+  private timeOfEnd() {
+    //Calculate time of ending of the match 
+  }
   private gameType(queueId: number) {
     switch (queueId) {
       case 400: {
