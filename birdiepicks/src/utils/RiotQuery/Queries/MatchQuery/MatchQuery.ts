@@ -1,7 +1,7 @@
 import { RiotRateLimiterWrapper } from "../../RiotRateLimiterWrapper";
 import { RegionDataManagement } from "@/utils/RegionDataManagement";
 import { MatchDto } from "../QueryDataTypes";
-import { MatchQueryParser } from "./MatchQueryParser";
+import { MatchParsedData, MatchQueryParser } from "./MatchQueryParser";
 
 
 const regionDataManagement = new RegionDataManagement();
@@ -27,7 +27,7 @@ export class MatchQuery {
     try {
       const matchData: MatchDto = await riotRateLimiter.execute();
       const matchQueryParser = new MatchQueryParser();
-      const parsedMatchData = matchQueryParser.parse(matchData);
+      const parsedMatchData: MatchParsedData = matchQueryParser.parse(matchData);
       if (!matchData) {
         throw new Error("Match data fetch query returned nothing");
       }
