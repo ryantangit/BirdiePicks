@@ -17,7 +17,7 @@ export default async function MatchHistory(props: MatchHistoryProps) {
     <ul>
       {matchQuery.map((matchId: string) => (
         <li key={matchId}>
-          <MatchFrame matchId={matchId} regionRoute={props.routeRegion} />
+          <MatchFrame matchId={matchId} regionRoute={props.routeRegion} puuid={props.puuid} />
         </li>
       ))}
     </ul>
