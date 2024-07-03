@@ -19,11 +19,14 @@ export class MatchQueryParser {
     }
   }
 
-  public parse(matchData: MatchDto) {
+  public parse(matchData: MatchDto, puuid: string) {
     this.parsedData.queueType = this.gameType(matchData.info.queueId);
     this.parsedData.timeEnded = this.timeEndtoString(matchData.info.gameEndTimestamp)
     this.parsedData.gameDuration = this.calcGameTimeDuration(matchData.info.gameStartTimestamp, matchData.info.gameEndTimestamp);
 
+    const playerStats = matchData.info.participants.find((participant) => participant.puuid === puuid);
+    console.log(playerStats?.win);
+    console.log(playerStats?.kills);
     return this.parsedData;
   }
   private calcGameTimeDuration(gameStartTimeStamp: number, gameEndTimestamp: number) {

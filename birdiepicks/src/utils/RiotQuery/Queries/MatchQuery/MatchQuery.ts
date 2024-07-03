@@ -21,13 +21,13 @@ export class MatchQuery {
     }
   }
 
-  public async getMatchInfo(matchId: string, regionRoute: string) {
+  public async getMatchInfo(matchId: string, regionRoute: string, puuid: string) {
     const apiPath = `/lol/match/v5/matches/${matchId}`
     const riotRateLimiter = new RiotRateLimiterWrapper(regionDataManagement.RouteToAPICluster(regionRoute), apiPath);
     try {
       const matchData: MatchDto = await riotRateLimiter.execute();
       const matchQueryParser = new MatchQueryParser();
-      const parsedMatchData: MatchParsedData = matchQueryParser.parse(matchData);
+      const parsedMatchData: MatchParsedData = matchQueryParser.parse(matchData, puuid);
       if (!matchData) {
         throw new Error("Match data fetch query returned nothing");
       }
