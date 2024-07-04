@@ -18,9 +18,11 @@ export default async function MatchFrame(props: MatchFrameProps) {
   }
   return (
     <>
+      <p>{props.matchId}</p>
       <p> {matchInfo.queueType} </p>
       <p> {matchInfo.timeEnded} </p>
       <p>{matchInfo.gameDuration} </p>
+      <p> {matchInfo.kills}/{matchInfo.deaths}/{matchInfo.assists} </p>
     </>
   )
 }

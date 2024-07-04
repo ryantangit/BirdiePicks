@@ -1,9 +1,13 @@
 import { MatchDto } from "../QueryDataTypes";
 
 export interface MatchParsedData {
+  assists: number;
+  deaths: number;
+  gameDuration: string;
+  kills: number;
   queueType: string;
   timeEnded: string;
-  gameDuration: string;
+  won: boolean;
 }
 
 
@@ -13,9 +17,13 @@ export class MatchQueryParser {
   constructor() {
     //Initial state should have errors
     this.parsedData = {
+      assists: 0,
+      deaths: 0,
+      gameDuration: "Undefined gameDuration",
+      kills: 0,
       queueType: "Undefined Queue",
       timeEnded: "Undefined TimeEnded",
-      gameDuration: "Undefined gameDuration"
+      won: false,
     }
   }
 
@@ -23,10 +31,14 @@ export class MatchQueryParser {
     this.parsedData.queueType = this.gameType(matchData.info.queueId);
     this.parsedData.timeEnded = this.timeEndtoString(matchData.info.gameEndTimestamp)
     this.parsedData.gameDuration = this.calcGameTimeDuration(matchData.info.gameStartTimestamp, matchData.info.gameEndTimestamp);
-
     const playerStats = matchData.info.participants.find((participant) => participant.puuid === puuid);
-    console.log(playerStats?.win);
-    console.log(playerStats?.kills);
+    if (!playerStats) {
+      throw new Error("Player stats not found in their own match looked up via puuid");
+    }
+    this.parsedData.won = playerStats.win;
+    this.parsedData.kills = playerStats.kills;
+    this.parsedData.assists = playerStats.assists;
+    this.parsedData.deaths = playerStats.deaths;
     return this.parsedData;
   }
   private calcGameTimeDuration(gameStartTimeStamp: number, gameEndTimestamp: number) {
