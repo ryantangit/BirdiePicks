@@ -2,14 +2,30 @@ import { MatchDto } from "../QueryDataTypes";
 
 export interface MatchParsedData {
   assists: number;
+  championId: number;
   deaths: number;
   gameDuration: string;
   kills: number;
+  participants: participantData[]
   queueType: string;
+  summoner1Id: number;
+  summoner2Id: number;
   timeEnded: string;
   won: boolean;
 }
 
+interface participantData {
+  assists: number;
+  championId: number;
+  deaths: number;
+  kills: number;
+  riotId: string;
+  riotTag: string;
+  summoner1Id: number;
+  summoner2Id: number;
+  teamId: string;
+  teamPosition: string;
+}
 
 export class MatchQueryParser {
   parsedData: MatchParsedData;
@@ -18,10 +34,14 @@ export class MatchQueryParser {
     //Initial state should have errors
     this.parsedData = {
       assists: 0,
+      championId: 0,
       deaths: 0,
       gameDuration: "Undefined gameDuration",
       kills: 0,
+      participants: [],
       queueType: "Undefined Queue",
+      summoner1Id: 0,
+      summoner2Id: 0,
       timeEnded: "Undefined TimeEnded",
       won: false,
     }
@@ -35,10 +55,14 @@ export class MatchQueryParser {
     if (!playerStats) {
       throw new Error("Player stats not found in their own match looked up via puuid");
     }
+    //Main banner
     this.parsedData.won = playerStats.win;
     this.parsedData.kills = playerStats.kills;
     this.parsedData.assists = playerStats.assists;
     this.parsedData.deaths = playerStats.deaths;
+    this.parsedData.championId = playerStats.championId;
+    this.parsedData.summoner1Id = playerStats.summoner1Id;
+    this.parsedData.summoner2Id = playerStats.summoner2Id;
     return this.parsedData;
   }
   private calcGameTimeDuration(gameStartTimeStamp: number, gameEndTimestamp: number) {
@@ -89,6 +113,8 @@ export class MatchQueryParser {
 
 //Helper
 function timeSince(elapsed: number) {
+
+  //TODO: CONVERT TO DATE, Subtract Current with Past time, change parameters
   if (elapsed < 0) {
     throw new Error("Time cannot be in the future");
   }

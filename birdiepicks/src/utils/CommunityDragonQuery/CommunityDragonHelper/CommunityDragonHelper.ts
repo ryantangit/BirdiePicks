@@ -1,17 +1,16 @@
 
 export class CommunityDragonHelper {
-  private BASE_URL = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/";
   private RETRIES = 3;
   private BACKOFFMS = 100;
 
-  public async execute(endPoint: string) {
+  public async execute(apiUrl: string) {
     let binaryBackOff = 1;
     let retries = this.RETRIES
     while (retries > 0) {
       try {
-        const response = await fetch(this.BASE_URL + endPoint);
+        const response = await fetch(apiUrl);
         if (!response.ok) {
-          throw new Error(`Community DragonHelper failed at fetching ${endPoint}`)
+          throw new Error(`Community DragonHelper failed at fetching ${apiUrl}`)
         }
         return response;
       } catch {
