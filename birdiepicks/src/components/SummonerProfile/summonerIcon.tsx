@@ -1,22 +1,20 @@
 import Image from "next/image";
+import { CommDragonQuery } from "@/utils/CommunityDragonQuery/CommunityDragonQuery";
 
 interface IconProp {
   profileIconId: number
 }
 
-const ICON_URL = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons";
 export default function SummonerIcon(props: IconProp) {
-  const iconSourceUrl = `${ICON_URL}/${props.profileIconId}.jpg`;
-  const iconHeight = 150;
-  const iconWidth = 150;
+  const iconImageData = CommDragonQuery.summonerIconImage(props.profileIconId);
 
   return (
     <>
       <Image
-        src={iconSourceUrl}
+        src={iconImageData.imageSrc}
         alt="Summoner Icon"
-        width={iconHeight}
-        height={iconWidth}
+        width={iconImageData.imageWidth}
+        height={iconImageData.imageHeight}
         className="standard-border"
       />
     </>

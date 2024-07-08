@@ -1,17 +1,28 @@
 import { MatchDto } from "../QueryDataTypes";
 
 export interface MatchParsedData {
+  gameDuration: string;
+  individual: individualData;
+  participants: participantData[]
+  queueType: string;
+  timeEnded: string;
+  won: boolean;
+}
+
+export interface individualData {
   assists: number;
   championId: number;
   deaths: number;
-  gameDuration: string;
   kills: number;
-  participants: participantData[]
-  queueType: string;
+  item0: number;
+  item1: number;
+  item2: number;
+  item3: number;
+  item4: number;
+  item5: number;
+  item6: number;
   summoner1Id: number;
   summoner2Id: number;
-  timeEnded: string;
-  won: boolean;
 }
 
 interface participantData {
@@ -33,18 +44,28 @@ export class MatchQueryParser {
   constructor() {
     //Initial state should have errors
     this.parsedData = {
-      assists: 0,
-      championId: 0,
-      deaths: 0,
       gameDuration: "Undefined gameDuration",
-      kills: 0,
+      individual: {
+        assists: 0,
+        championId: 0,
+        deaths: 0,
+        item0: 0,
+        item1: 0,
+        item2: 0,
+        item3: 0,
+        item4: 0,
+        item5: 0,
+        item6: 0,
+        kills: 0,
+        summoner1Id: 0,
+        summoner2Id: 0,
+      },
       participants: [],
       queueType: "Undefined Queue",
-      summoner1Id: 0,
-      summoner2Id: 0,
       timeEnded: "Undefined TimeEnded",
       won: false,
     }
+
   }
 
   public parse(matchData: MatchDto, puuid: string) {
@@ -57,12 +78,19 @@ export class MatchQueryParser {
     }
     //Main banner
     this.parsedData.won = playerStats.win;
-    this.parsedData.kills = playerStats.kills;
-    this.parsedData.assists = playerStats.assists;
-    this.parsedData.deaths = playerStats.deaths;
-    this.parsedData.championId = playerStats.championId;
-    this.parsedData.summoner1Id = playerStats.summoner1Id;
-    this.parsedData.summoner2Id = playerStats.summoner2Id;
+    this.parsedData.individual.kills = playerStats.kills;
+    this.parsedData.individual.assists = playerStats.assists;
+    this.parsedData.individual.deaths = playerStats.deaths;
+    this.parsedData.individual.championId = playerStats.championId;
+    this.parsedData.individual.summoner1Id = playerStats.summoner1Id;
+    this.parsedData.individual.summoner2Id = playerStats.summoner2Id;
+    this.parsedData.individual.item0 = playerStats.item0;
+    this.parsedData.individual.item1 = playerStats.item1;
+    this.parsedData.individual.item2 = playerStats.item2;
+    this.parsedData.individual.item3 = playerStats.item3;
+    this.parsedData.individual.item4 = playerStats.item4;
+    this.parsedData.individual.item5 = playerStats.item5;
+    this.parsedData.individual.item6 = playerStats.item6;
     return this.parsedData;
   }
   private calcGameTimeDuration(gameStartTimeStamp: number, gameEndTimestamp: number) {
