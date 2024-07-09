@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "raw.communitydragon.org",
         port: "",
-        pathname: "/latest/plugins/rcp-be-lol-game-data/global/default/v1/**"
+        pathname: "/latest/plugins/rcp-be-lol-game-data/global/default/**"
       }
     ]
   }
