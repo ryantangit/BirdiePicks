@@ -21,7 +21,18 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
         height={champIconData.imageHeight}
         width={champIconData.imageWidth}>
       </Image>
-      <p> {sumSpell1Data} {sumSpell2Data} </p>
+      <Image
+        src={sumSpell1Data.imageSrc}
+        alt={sumSpell1Data.imageAlt}
+        height={sumSpell1Data.imageHeight}
+        width={sumSpell1Data.imageWidth}>
+      </Image>
+      <Image
+        src={sumSpell2Data.imageSrc}
+        alt={sumSpell2Data.imageAlt}
+        height={sumSpell2Data.imageHeight}
+        width={sumSpell2Data.imageWidth}>
+      </Image>
     </>
   )
 }

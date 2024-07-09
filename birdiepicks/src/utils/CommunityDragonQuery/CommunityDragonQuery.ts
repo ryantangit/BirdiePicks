@@ -34,6 +34,23 @@ export class CommDragonQuery {
 
   static sumSpellIconImage(spellId: number) {
     const summonerSpellInfo = sumSpellJson.find((summoner) => summoner.id === spellId);
-    return summonerSpellInfo?.name
+    if (!summonerSpellInfo)
+      throw new Error("Summoner spell id not found despite given a spell ID");
+    const imageData: ImageData = {
+      imageHeight: 40,
+      imageWidth: 40,
+      imageAlt: `Summoner Spell ${summonerSpellInfo.name}`,
+      imageSrc: jsonPathConverter(summonerSpellInfo.iconPath)
+    }
+    return imageData;
   }
+
 }
+
+function jsonPathConverter(path: string) {
+  const convertStart = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default"
+  const pathArray = path.split("/");
+  const lowerpath = pathArray.map((string) => (string.toLowerCase())).slice(3);
+  return `${convertStart}/${lowerpath.join("/")}`;
+}
+
