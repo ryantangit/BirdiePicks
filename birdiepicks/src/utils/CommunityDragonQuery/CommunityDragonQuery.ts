@@ -41,7 +41,21 @@ export class CommDragonQuery {
       imageWidth: 40,
       imageAlt: `Summoner Spell ${summonerSpellInfo.name}`,
       imageSrc: jsonPathConverter(summonerSpellInfo.iconPath)
+    };
+    return imageData;
+  }
+
+  static itemIconImage(itemId: number) {
+    const itemInfo = itemJson.find((item) => item.id === itemId);
+    if (!itemInfo) {
+      throw new Error("Item not found despite having the item ID");
     }
+    const imageData: ImageData = {
+      imageHeight: 30,
+      imageWidth: 30,
+      imageAlt: `Item Icon ${itemInfo.name}`,
+      imageSrc: jsonPathConverter(itemInfo.iconPath)
+    };
     return imageData;
   }
 

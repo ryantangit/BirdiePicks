@@ -11,7 +11,10 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
   const champIconData = CommDragonQuery.championIconImage(props.individual.championId);
   const sumSpell1Data = CommDragonQuery.sumSpellIconImage(props.individual.summoner1Id);
   const sumSpell2Data = CommDragonQuery.sumSpellIconImage(props.individual.summoner2Id);
-
+  const itemsData = [];
+  itemsData.push(props.individual.item0, props.individual.item1, props.individual.item2, props.individual.item3, props.individual.item4,
+    props.individual.item5, props.individual.item6);
+  const itemImageDatas = itemsData.map((item) => { CommDragonQuery.itemIconImage(item) });
   return (
     <>
       <p> {props.individual.kills} / {props.individual.deaths} / {props.individual.assists} </p>
