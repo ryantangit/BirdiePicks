@@ -1,11 +1,12 @@
 import itemJson from "@/CDragonJson/items.json";
 import sumSpellJson from "@/CDragonJson/summoner-spells.json"
 
-interface ImageData {
+export interface ImageData {
   imageHeight: number;
   imageWidth: number;
   imageAlt: string;
   imageSrc: string;
+  id: number;
 }
 
 export class CommDragonQuery {
@@ -16,7 +17,8 @@ export class CommDragonQuery {
       imageHeight: 150,
       imageWidth: 150,
       imageAlt: `Summoner Icon ${iconId}`,
-      imageSrc: `${ICON_API_PATH}/${iconId}.jpg`
+      imageSrc: `${ICON_API_PATH}/${iconId}.jpg`,
+      id: iconId
     }
     return imageData;
   }
@@ -27,7 +29,8 @@ export class CommDragonQuery {
       imageHeight: 60,
       imageWidth: 60,
       imageAlt: `Champion Icon ${championId}`,
-      imageSrc: `${ICON_PATH}/${championId}.png`
+      imageSrc: `${ICON_PATH}/${championId}.png`,
+      id: championId
     }
     return imageData;
   }
@@ -40,12 +43,23 @@ export class CommDragonQuery {
       imageHeight: 40,
       imageWidth: 40,
       imageAlt: `Summoner Spell ${summonerSpellInfo.name}`,
-      imageSrc: jsonPathConverter(summonerSpellInfo.iconPath)
+      imageSrc: jsonPathConverter(summonerSpellInfo.iconPath),
+      id: spellId
     };
     return imageData;
   }
 
   static itemIconImage(itemId: number) {
+    if (itemId === 0) {
+      const placeholderImageData: ImageData = {
+        imageHeight: 30,
+        imageWidth: 30,
+        imageAlt: "no items",
+        imageSrc: jsonPathConverter("/lol-game-data/assets/ASSETS/Items/Icons2D/GP_UI_Placeholder.png"),
+        id: 0
+      }
+      return placeholderImageData;
+    }
     const itemInfo = itemJson.find((item) => item.id === itemId);
     if (!itemInfo) {
       throw new Error("Item not found despite having the item ID");
@@ -54,7 +68,8 @@ export class CommDragonQuery {
       imageHeight: 30,
       imageWidth: 30,
       imageAlt: `Item Icon ${itemInfo.name}`,
-      imageSrc: jsonPathConverter(itemInfo.iconPath)
+      imageSrc: jsonPathConverter(itemInfo.iconPath),
+      id: itemId
     };
     return imageData;
   }
