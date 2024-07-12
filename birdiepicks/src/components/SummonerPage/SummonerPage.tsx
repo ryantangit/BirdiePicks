@@ -12,7 +12,6 @@ export default async function SummonerPage(props: SummonerPageProps) {
 
   const result = await fetchSummonerProfile(props.regionID);
 
-
   if (!result) {
     return <p> not found </p>
   }
