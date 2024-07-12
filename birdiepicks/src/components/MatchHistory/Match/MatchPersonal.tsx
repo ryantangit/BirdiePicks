@@ -20,29 +20,30 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
     itemsImageData.push(CommDragonQuery.itemIconImage(item));
   });
   return (
-    <>
-      <p> {props.individual.kills} / {props.individual.deaths} / {props.individual.assists} </p>
+    <div className="grid grid-rows-2 grid-cols-2">
       <Image
         src={champIconData.imageSrc}
         alt={champIconData.imageSrc}
         height={champIconData.imageHeight}
         width={champIconData.imageWidth}>
       </Image>
-      <div>
+      <div className="grid grid-cols-2">
         <Image
           src={sumSpell1Data.imageSrc}
           alt={sumSpell1Data.imageAlt}
           height={sumSpell1Data.imageHeight}
-          width={sumSpell1Data.imageWidth}>
+          width={sumSpell1Data.imageWidth}
+          className="justify-end standard-border">
         </Image>
         <Image
           src={sumSpell2Data.imageSrc}
           alt={sumSpell2Data.imageAlt}
           height={sumSpell2Data.imageHeight}
-          width={sumSpell2Data.imageWidth}>
+          width={sumSpell2Data.imageWidth}
+          className="standard-border">
         </Image>
       </div>
-      <div>
+      <div className="grid grid-cols-7 col-span-2 py-1">
         {
           itemsImageData.map((item) => {
             return (
@@ -51,12 +52,13 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
                 src={item.imageSrc}
                 alt={item.imageAlt}
                 height={item.imageHeight}
-                width={item.imageWidth}>
+                width={item.imageWidth}
+                className="standard-border">
               </Image>
             )
           })
         }
       </div>
-    </>
+    </div>
   )
 }
