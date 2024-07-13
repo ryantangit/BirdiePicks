@@ -1,6 +1,7 @@
 import { RiotQuery } from "@/utils/RiotQuery";
 import MatchPersonal from "./MatchPersonal";
 import MatchStats from "./MatchStats";
+import MatchTeams from "./MatchTeams";
 
 interface MatchFrameProps {
   matchId: string;
@@ -25,6 +26,7 @@ export default async function MatchFrame(props: MatchFrameProps) {
         timeEnded={matchInfo.timeEnded}
         gameDuration={matchInfo.gameDuration} />
       <MatchPersonal individual={matchInfo.individual} />
+      <MatchTeams />
     </div>
   )
 }

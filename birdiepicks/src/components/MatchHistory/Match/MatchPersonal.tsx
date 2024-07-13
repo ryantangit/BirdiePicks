@@ -20,7 +20,7 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
     itemsImageData.push(CommDragonQuery.itemIconImage(item));
   });
   return (
-    <div className="grid grid-rows-2 grid-cols-2">
+    <div className="grid grid-rows-2 grid-cols-3">
       <Image
         src={champIconData.imageSrc}
         alt={champIconData.imageSrc}
@@ -43,7 +43,7 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
           className="standard-border">
         </Image>
       </div>
-      <div className="grid grid-cols-7 col-span-2 py-1">
+      <div className="grid grid-cols-7 col-span-3 py-1">
         {
           itemsImageData.map((item) => {
             return (
