@@ -25,7 +25,7 @@ export interface individualData {
   summoner2Id: number;
 }
 
-interface participantData {
+export interface participantData {
   assists: number;
   championId: number;
   deaths: number;
@@ -34,7 +34,7 @@ interface participantData {
   riotTag: string;
   summoner1Id: number;
   summoner2Id: number;
-  teamId: string;
+  teamId: number;
   teamPosition: string;
 }
 
@@ -91,6 +91,23 @@ export class MatchQueryParser {
     this.parsedData.individual.item4 = playerStats.item4;
     this.parsedData.individual.item5 = playerStats.item5;
     this.parsedData.individual.item6 = playerStats.item6;
+
+    //Participants
+    for (const participant of matchData.info.participants) {
+      const parsedParticipant: participantData = {
+        assists: participant.assists,
+        championId: participant.championId,
+        deaths: participant.deaths,
+        kills: participant.kills,
+        riotId: participant.riotIdGameName,
+        riotTag: participant.riotIdTagline,
+        summoner1Id: participant.summoner1Id,
+        summoner2Id: participant.summoner2Id,
+        teamId: participant.teamId,
+        teamPosition: participant.teamPosition
+      }
+      this.parsedData.participants.push(parsedParticipant);
+    }
     return this.parsedData;
   }
   private calcGameTimeDuration(gameStartTimeStamp: number, gameEndTimestamp: number) {

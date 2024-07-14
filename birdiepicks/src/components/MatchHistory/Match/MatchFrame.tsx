@@ -26,7 +26,7 @@ export default async function MatchFrame(props: MatchFrameProps) {
         timeEnded={matchInfo.timeEnded}
         gameDuration={matchInfo.gameDuration} />
       <MatchPersonal individual={matchInfo.individual} />
-      <MatchTeams />
+      <MatchTeams participants={matchInfo.participants} />
     </div>
   )
 }
