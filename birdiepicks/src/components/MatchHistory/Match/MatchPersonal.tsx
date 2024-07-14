@@ -59,6 +59,7 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
           })
         }
       </div>
+
     </div>
   )
 }
