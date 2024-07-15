@@ -8,12 +8,25 @@ interface MatchTeamsProps {
 export default function MatchTeams(props: MatchTeamsProps) {
   const team1 = props.participants.filter((participant) => participant.teamId === 100);
   const team2 = props.participants.filter((participant) => participant.teamId === 200);
-  console.log(team1);
-  console.log(team2);
   return (
-    <div>
-      <div>
+    <div className="grid grid-cols-2">
+      <div className="grid grid-rows-5">
+        {teamMembers(team1)}
+      </div>
+      <div className="grid grid-rows-5">
+        {teamMembers(team2)}
       </div>
     </div>
   )
+}
+
+function teamMembers(team: participantData[]) {
+  return (team.map((member) => {
+    return (
+      <MatchTeamMember key={member.puuid}
+        participant={member}
+      />
+    )
+  }))
+
 }

@@ -2,16 +2,16 @@ import { MatchDto } from "../QueryDataTypes";
 
 export interface MatchParsedData {
   gameDuration: string;
-  individual: individualData;
   participants: participantData[]
   queueType: string;
   timeEnded: string;
   won: boolean;
 }
 
-export interface individualData {
+export interface participantData {
   assists: number;
   championId: number;
+  csPerMin: string;
   deaths: number;
   kills: number;
   item0: number;
@@ -21,17 +21,9 @@ export interface individualData {
   item4: number;
   item5: number;
   item6: number;
-  summoner1Id: number;
-  summoner2Id: number;
-}
-
-export interface participantData {
-  assists: number;
-  championId: number;
-  deaths: number;
-  kills: number;
   riotId: string;
   riotTag: string;
+  puuid: string;
   summoner1Id: number;
   summoner2Id: number;
   teamId: number;
@@ -45,21 +37,6 @@ export class MatchQueryParser {
     //Initial state should have errors
     this.parsedData = {
       gameDuration: "Undefined gameDuration",
-      individual: {
-        assists: 0,
-        championId: 0,
-        deaths: 0,
-        item0: 0,
-        item1: 0,
-        item2: 0,
-        item3: 0,
-        item4: 0,
-        item5: 0,
-        item6: 0,
-        kills: 0,
-        summoner1Id: 0,
-        summoner2Id: 0,
-      },
       participants: [],
       queueType: "Undefined Queue",
       timeEnded: "Undefined TimeEnded",
@@ -76,31 +53,25 @@ export class MatchQueryParser {
     if (!playerStats) {
       throw new Error("Player stats not found in their own match looked up via puuid");
     }
-    //Main banner
-    this.parsedData.won = playerStats.win;
-    this.parsedData.individual.kills = playerStats.kills;
-    this.parsedData.individual.assists = playerStats.assists;
-    this.parsedData.individual.deaths = playerStats.deaths;
-    this.parsedData.individual.championId = playerStats.championId;
-    this.parsedData.individual.summoner1Id = playerStats.summoner1Id;
-    this.parsedData.individual.summoner2Id = playerStats.summoner2Id;
-    this.parsedData.individual.item0 = playerStats.item0;
-    this.parsedData.individual.item1 = playerStats.item1;
-    this.parsedData.individual.item2 = playerStats.item2;
-    this.parsedData.individual.item3 = playerStats.item3;
-    this.parsedData.individual.item4 = playerStats.item4;
-    this.parsedData.individual.item5 = playerStats.item5;
-    this.parsedData.individual.item6 = playerStats.item6;
-
     //Participants
     for (const participant of matchData.info.participants) {
       const parsedParticipant: participantData = {
         assists: participant.assists,
         championId: participant.championId,
+        csPerMin: this.calcCSperMin(participant.totalMinionsKilled + participant.neutralMinionsKilled,
+          matchData.info.gameStartTimestamp, matchData.info.gameEndTimestamp),
         deaths: participant.deaths,
         kills: participant.kills,
+        item0: participant.item0,
+        item1: participant.item1,
+        item2: participant.item2,
+        item3: participant.item3,
+        item4: participant.item4,
+        item5: participant.item5,
+        item6: participant.item6,
         riotId: participant.riotIdGameName,
         riotTag: participant.riotIdTagline,
+        puuid: participant.puuid,
         summoner1Id: participant.summoner1Id,
         summoner2Id: participant.summoner2Id,
         teamId: participant.teamId,
@@ -124,6 +95,13 @@ export class MatchQueryParser {
     const currTime = Math.floor(new Date().getTime());
     const elapsed = currTime - gameEndTimestamp;
     return timeSince(elapsed);
+  }
+
+  private calcCSperMin(cs: number, gameStartTimestamp: number, gameEndTimestamp: number) {
+    const duration = gameEndTimestamp - gameStartTimestamp;
+    const convertedDuration = duration / 1000;
+    const minutes = (convertedDuration / 60); //1.5 is time before minion spawns
+    return (`${(cs / minutes).toFixed(1)} cs/m`);
   }
 
   private gameType(queueId: number): string {

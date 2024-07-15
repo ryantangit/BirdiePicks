@@ -1,10 +1,10 @@
-import { individualData } from "@/utils/RiotQuery/Queries/MatchQuery/MatchQueryParser";
 import { CommDragonQuery } from "@/utils/CommunityDragonQuery/CommunityDragonQuery";
 import { ImageData } from "@/utils/CommunityDragonQuery/CommunityDragonQuery";
+import { participantData } from "@/utils/RiotQuery/Queries/MatchQuery/MatchQueryParser";
 import Image from "next/image";
 
 interface MatchPersonalProps {
-  individual: individualData
+  individual: participantData
 }
 
 export default async function MatchPersonal(props: MatchPersonalProps) {
@@ -17,33 +17,33 @@ export default async function MatchPersonal(props: MatchPersonalProps) {
     props.individual.item5, props.individual.item6);
   const itemsImageData: ImageData[] = [];
   itemIDs.forEach((item) => {
-    itemsImageData.push(CommDragonQuery.itemIconImage(item));
+    itemsImageData.push(CommDragonQuery.itemIconImage(item, true));
   });
   return (
-    <div className="grid grid-rows-2 grid-cols-3">
+    <div className="grid grid-rows-2 grid-cols-2">
       <Image
         src={champIconData.imageSrc}
         alt={champIconData.imageSrc}
         height={champIconData.imageHeight}
         width={champIconData.imageWidth}>
       </Image>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-2">
         <Image
           src={sumSpell1Data.imageSrc}
           alt={sumSpell1Data.imageAlt}
           height={sumSpell1Data.imageHeight}
           width={sumSpell1Data.imageWidth}
-          className="justify-end standard-border">
+          className="justify-self-end standard-border">
         </Image>
         <Image
           src={sumSpell2Data.imageSrc}
           alt={sumSpell2Data.imageAlt}
           height={sumSpell2Data.imageHeight}
           width={sumSpell2Data.imageWidth}
-          className="standard-border">
+          className="justify-self-end standard-border">
         </Image>
       </div>
-      <div className="grid grid-cols-7 col-span-3 py-1">
+      <div className="grid grid-cols-7 col-span-2 py-1">
         {
           itemsImageData.map((item) => {
             return (
