@@ -23,11 +23,11 @@ export class CommDragonQuery {
     return imageData;
   }
 
-  static championIconImage(championId: number) {
+  static championIconImage(championId: number, largeSize = true) {
     const ICON_PATH = "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons";
     const imageData: ImageData = {
-      imageHeight: 60,
-      imageWidth: 60,
+      imageHeight: largeSize ? 60 : 40,
+      imageWidth: largeSize ? 60 : 40,
       imageAlt: `Champion Icon ${championId}`,
       imageSrc: `${ICON_PATH}/${championId}.png`,
       id: championId
@@ -35,13 +35,14 @@ export class CommDragonQuery {
     return imageData;
   }
 
-  static sumSpellIconImage(spellId: number) {
+
+  static sumSpellIconImage(spellId: number, largeSize = true) {
     const summonerSpellInfo = sumSpellJson.find((summoner) => summoner.id === spellId);
     if (!summonerSpellInfo)
       throw new Error("Summoner spell id not found despite given a spell ID");
     const imageData: ImageData = {
-      imageHeight: 40,
-      imageWidth: 40,
+      imageHeight: largeSize ? 40 : 20,
+      imageWidth: largeSize ? 40 : 20,
       imageAlt: `Summoner Spell ${summonerSpellInfo.name}`,
       imageSrc: jsonPathConverter(summonerSpellInfo.iconPath),
       id: spellId
@@ -49,11 +50,11 @@ export class CommDragonQuery {
     return imageData;
   }
 
-  static itemIconImage(itemId: number) {
+  static itemIconImage(itemId: number, largeSize = false) {
     if (itemId === 0) {
       const placeholderImageData: ImageData = {
-        imageHeight: 30,
-        imageWidth: 30,
+        imageHeight: largeSize ? 40 : 20,
+        imageWidth: largeSize ? 40 : 20,
         imageAlt: "no items",
         imageSrc: jsonPathConverter("/lol-game-data/assets/ASSETS/Items/Icons2D/GP_UI_Placeholder.png"),
         id: 0
@@ -65,8 +66,8 @@ export class CommDragonQuery {
       throw new Error("Item not found despite having the item ID");
     }
     const imageData: ImageData = {
-      imageHeight: 30,
-      imageWidth: 30,
+      imageHeight: largeSize ? 40 : 20,
+      imageWidth: largeSize ? 40 : 20,
       imageAlt: `Item Icon ${itemInfo.name}`,
       imageSrc: jsonPathConverter(itemInfo.iconPath),
       id: itemId
