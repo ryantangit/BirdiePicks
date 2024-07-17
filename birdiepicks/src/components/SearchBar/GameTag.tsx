@@ -17,10 +17,12 @@ export default function GameTag(props: GameTagProps) {
     props.setGametag(inputElement.value);
   }
   const gameTagInputHTMLId = useId();
+  const setGameTag = props.setGametag;
+  const selectedRegion = props.selectedRegion;
 
   useEffect(() => {
-    props.setGametag(regionDataManagement.defaultGametag(props.selectedRegion));
-  }, [props.selectedRegion])
+    setGameTag(regionDataManagement.defaultGametag(selectedRegion));
+  }, [setGameTag, selectedRegion])
 
   return (
     <div>

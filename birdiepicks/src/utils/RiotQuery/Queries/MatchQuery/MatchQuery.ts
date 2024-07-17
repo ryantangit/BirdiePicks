@@ -8,7 +8,7 @@ const regionDataManagement = new RegionDataManagement();
 export class MatchQuery {
 
   public async getLast10Matches(puuid: string, regionRoute: string) {
-    const apiPath = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=1` //TODO: change this later
+    const apiPath = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=3` //TODO: change this later
     const riotRateLimiter = new RiotRateLimiterWrapper(regionDataManagement.RouteToAPICluster(regionRoute), apiPath);
     try {
       const matchListResults: string[] = await riotRateLimiter.execute();

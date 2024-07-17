@@ -1,4 +1,4 @@
-import { LeagueEntryDTO } from "./LeagueQuery";
+import { LeagueEntryDTO } from "../QueryDataTypes";
 
 export interface ParsedLeagueQuery {
   tier: string;
