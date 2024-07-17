@@ -23,9 +23,11 @@ export default function MatchTeams(props: MatchTeamsProps) {
 function teamMembers(team: participantData[]) {
   return (team.map((member) => {
     return (
-      <MatchTeamMember key={member.puuid}
-        participant={member}
-      />
+      <div key={member.puuid} className="py-1">
+        <MatchTeamMember
+          participant={member}
+        />
+      </div>
     )
   }))
 

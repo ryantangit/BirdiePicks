@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     remotePatterns: [
       {
@@ -9,7 +10,9 @@ const nextConfig = {
         pathname: "/latest/plugins/rcp-be-lol-game-data/global/default/**"
       }
     ]
-  }
+  },
 };
+
+
 
 export default nextConfig;

@@ -64,6 +64,14 @@ export default function MatchTeamMember(props: MatchTeamMemberProps) {
           })
         }
       </div>
+      <div className="grid grid-rows-2 col-start-8 col-span-2">
+        <p>
+          {`${props.participant.kills}/${props.participant.deaths}/${props.participant.assists}`}
+        </p>
+        <p>
+          {props.participant.csPerMin}
+        </p>
+      </div>
     </div>
   )
 }
