@@ -63,8 +63,7 @@ export class CommDragonQuery {
     }
     const itemInfo = itemJson.find((item) => item.id === itemId);
     if (!itemInfo) {
-      console.log(itemId)
-      console.log("Item not found despite having the item ID");
+      throw new Error("Item not found despite having the item ID");
     }
     const imageData: ImageData = {
       imageHeight: largeSize ? 40 : 20,
