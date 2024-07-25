@@ -18,6 +18,8 @@ export default function SearchBar() {
       <div className="col-span-2 col-start-2 w-full p-3">
         <GameName gameName={gameName}
           setGameName={setGameName}
+          gametag={gametag}
+          regionName={selectedRegion.region}
         />
       </div>
       <div className="col-span-1 p-3">
