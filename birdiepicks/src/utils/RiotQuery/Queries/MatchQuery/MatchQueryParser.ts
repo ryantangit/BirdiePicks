@@ -53,6 +53,8 @@ export class MatchQueryParser {
     if (!playerStats) {
       throw new Error("Player stats not found in their own match looked up via puuid");
     }
+    this.parsedData.won = playerStats.win;
+
     //Participants
     for (const participant of matchData.info.participants) {
       const parsedParticipant: participantData = {

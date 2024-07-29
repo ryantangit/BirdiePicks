@@ -17,19 +17,24 @@ export default async function MatchFrame(props: MatchFrameProps) {
   const individualInfo = matchInfo.participants.find((participant) => participant.puuid === props.puuid)
   assert(individualInfo);
   return (
-    <div className="grid grid-cols-10 grid-rows-2">
+    <div className="flex">
+      <div className="standard-border flex flex-col justify-center content-between mx-5">
+        <div className="px-2">
+          <MatchStats queueType={matchInfo.queueType}
+            timeEnded={matchInfo.timeEnded}
+            gameDuration={matchInfo.gameDuration}
+            winLose={matchInfo.won}
+          />
+        </div>
+        <div className="px-2">
+          <MatchPersonal individual={individualInfo} />
+        </div>
+      </div>
       <div>
-        <MatchStats queueType={matchInfo.queueType}
-          timeEnded={matchInfo.timeEnded}
-          gameDuration={matchInfo.gameDuration} />
-      </div>
-      <div className="col-span-2">
-        <MatchPersonal individual={individualInfo} />
-      </div>
-      <div className="row-start-2 col-span-10">
         <MatchTeams participants={matchInfo.participants} />
       </div>
-    </div>
+
+    </div >
   )
 }
 
