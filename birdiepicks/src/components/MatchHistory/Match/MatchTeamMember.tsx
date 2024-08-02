@@ -1,14 +1,18 @@
 import { participantData } from "@/utils/RiotQuery/Queries/MatchQuery/MatchQueryParser";
 import { CommDragonQuery } from "@/utils/CommunityDragonQuery/CommunityDragonQuery";
 import { ImageData } from "@/utils/CommunityDragonQuery/CommunityDragonQuery";
+import Link from "next/link";
 import Image from "next/image";
+import { RouteUtils } from "@/utils/RouteUtils";
 
 interface MatchTeamMemberProps {
   participant: participantData;
+  regionRoute: string;
 }
 
 export default function MatchTeamMember(props: MatchTeamMemberProps) {
   //name / champion / summoners / items / stats
+  const nameRoute = `/summoner/${props.regionRoute}/${props.participant.riotId}-${props.participant.riotTag}`;
   const champIconData = CommDragonQuery.championIconImage(props.participant.championId, false);
   const sumSpell1Data = CommDragonQuery.sumSpellIconImage(props.participant.summoner1Id);
   const sumSpell2Data = CommDragonQuery.sumSpellIconImage(props.participant.summoner2Id);
@@ -21,9 +25,10 @@ export default function MatchTeamMember(props: MatchTeamMemberProps) {
   });
   return (
     <div className="grid grid-cols-10">
-      <p className="col-start-1 col-span-2">
+      <Link className="col-start-1 col-span-2"
+        href={nameRoute}>
         {props.participant.riotId}
-      </p>
+      </Link>
       <p className="col-start-3">
         <Image
           src={champIconData.imageSrc}

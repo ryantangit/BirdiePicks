@@ -31,7 +31,8 @@ export default async function MatchFrame(props: MatchFrameProps) {
         </div>
       </div>
       <div>
-        <MatchTeams participants={matchInfo.participants} />
+        <MatchTeams participants={matchInfo.participants}
+          regionRoute={props.regionRoute} />
       </div>
 
     </div >
