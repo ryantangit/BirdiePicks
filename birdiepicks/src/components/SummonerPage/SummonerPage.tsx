@@ -1,6 +1,7 @@
 import { RiotQuery } from "@/utils/RiotQuery";
 import SummonerProfile from "../SummonerProfile/summonerProfile";
 import MatchHistory from "../MatchHistory/MatchHistory";
+import SearchBar from "../SearchBar/SearchBar";
 
 
 interface SummonerPageProps {
@@ -18,6 +19,7 @@ export default async function SummonerPage(props: SummonerPageProps) {
 
   return (
     <>
+      <SearchBar />
       <SummonerProfile
         profileIconId={result.summonerResult.profileIconId}
         gameName={result.puuidResult.gameName}
