@@ -1,7 +1,5 @@
 import { RiotQuery } from "@/utils/RiotQuery";
 import MatchFrame from "./Match/MatchFrame";
-import {RiotQuery}
-
 interface MatchHistoryProps {
   puuid: string;
   routeRegion: string;

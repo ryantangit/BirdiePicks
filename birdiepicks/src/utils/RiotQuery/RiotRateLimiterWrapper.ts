@@ -10,7 +10,7 @@ export class RiotRateLimiterWrapper {
   }
 
   public async execute() {
-    const url = `https://${this.apiCluster}.api.riotgames.com${this.apiPath}`
+    const url = `https://${this.apiCluster}.api.riotgames.com${this.apiPath}`;
     try {
       const response = await riotRateLimiter.execute({
         url: url,
@@ -25,11 +25,10 @@ export class RiotRateLimiterWrapper {
       console.log(`Querying ${url}`);
       console.log(error);
     }
-
   }
 
   public async executeWithParams() {
-    const url = `https://${this.apiCluster}.api.riotgames.com${this.apiPath}`
+    const url = `https://${this.apiCluster}.api.riotgames.com${this.apiPath}`;
     try {
       const response = await riotRateLimiter.execute({
         url: url,
@@ -44,6 +43,5 @@ export class RiotRateLimiterWrapper {
       console.log(`Querying ${url}`);
       console.log(error);
     }
-
   }
 }
