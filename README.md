@@ -1,12 +1,5 @@
-# BirdiePicks
+    Welcome to Birdiepicks
 
-# Project
+    To use the repo, clone and create a .env inside /birdiepicks and populate with RIOT_API
 
-- A League of Legends Data Analysis
-
-  
-- Front end: React
-- Backend: Next.JS
-
-## Notes
-- Datadragon - riot assets
+    Then either use docker compose up for fast build of production server or npm run dev for development
