@@ -16,6 +16,7 @@ export default async function SummonerPage(props: SummonerPageProps) {
 
   return (
     <>
+      <SearchBar />
       <SummonerProfile
         profileIconId={result.summonerResult.profileIconId}
         gameName={result.puuidResult.gameName}
