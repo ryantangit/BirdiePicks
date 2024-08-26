@@ -14,7 +14,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={robotoMono.className}>{children}</body>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
+      </head>
+      <body
+        className={`robotoMono.className  w-[1800px] mx-auto overflow-x-auto min-h-screen`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
