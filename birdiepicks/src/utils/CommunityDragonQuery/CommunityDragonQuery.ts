@@ -53,21 +53,22 @@ export class CommDragonQuery {
   }
 
   static itemIconImage(itemId: number, largeSize = false) {
+    const placeholderImageData: ImageData = {
+      imageHeight: largeSize ? 40 : 20,
+      imageWidth: largeSize ? 40 : 20,
+      imageAlt: "no items",
+      imageSrc: jsonPathConverter(
+        "/lol-game-data/assets/ASSETS/Items/Icons2D/GP_UI_Placeholder.png",
+      ),
+      id: 0,
+    };
     if (itemId === 0) {
-      const placeholderImageData: ImageData = {
-        imageHeight: largeSize ? 40 : 20,
-        imageWidth: largeSize ? 40 : 20,
-        imageAlt: "no items",
-        imageSrc: jsonPathConverter(
-          "/lol-game-data/assets/ASSETS/Items/Icons2D/GP_UI_Placeholder.png",
-        ),
-        id: 0,
-      };
       return placeholderImageData;
     }
     const itemInfo = itemJson.find((item) => item.id === itemId);
     if (!itemInfo) {
-      throw new Error("Item not found despite having the item ID");
+      console.log("Item not found despite having the item ID");
+      return placeholderImageData;
     }
     const imageData: ImageData = {
       imageHeight: largeSize ? 40 : 20,
